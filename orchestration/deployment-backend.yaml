@@ -1,7 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment
+  name: backend
+  labels: 
+    app: backend
 spec:
   replicas: 3
   selector:
@@ -14,6 +16,6 @@ spec:
     spec:
       containers:
       - name: backend
-        image: backend:latest
+        image: sepel24/backend:latest
         ports:
-        - containerPort: 5000 # assuming my backend runs on port 5000
+        - containerPort: 9000 
