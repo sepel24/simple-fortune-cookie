@@ -1,7 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: frontend
+  labels:
+    app: frontend
 spec:
   replicas: 3
   selector:
@@ -14,9 +16,11 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: frontend:latest
+        image: sepel24/frontend:latest
         ports:
-        - containerPort: 3000 # assuming my frontend runs on port 3000
+        - containerPort: 8080 
         env:
-        - name: BACKEND_URL
-          value: "http://backend-service:5000" # Environment variable to access backend
+        - name: BACKEND_PORT
+          value: "9000"
+        - name: BACKEND_DNS
+          value: backend
