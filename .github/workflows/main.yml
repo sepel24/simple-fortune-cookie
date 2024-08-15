@@ -27,12 +27,12 @@ jobs:
       - name: Clone down repository
         uses: actions/checkout@v4
 
-      - name: Build and test application
+      - name: Run application
         run:  |
             cd backend
-            go build backend
+            go build -buildvcs=false
             cd ../frontend
-            go build frontend
+            go build -buildvcs=false
             go test
 
 
