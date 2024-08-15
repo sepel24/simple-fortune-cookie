@@ -1,6 +1,5 @@
 name: Pipeline
 
-# Esegui il workflow su push o pull request verso il branch main
 on:
   push:
     branches:
@@ -13,17 +12,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Pull the repository
         uses: actions/checkout@v4
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.21.12'
-      - name: Run application
+          go-version: '1.22'
+      - name: Build Backend
         run:  |
             cd backend
             go build -buildvcs=false
-            cd ../frontend
+      - name: Build Frontend
+        run:  |
+            cd frontend
             go build -buildvcs=false
       - name: Test application
         run: |
