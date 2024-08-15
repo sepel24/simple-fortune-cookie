@@ -5,28 +5,20 @@ on:
   push:
     branches:
       - main
-      - 03-automation
   pull_request:
     branches:
       - main
-      - 03-automation
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: gradle:6-jdk11
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
           go-version: '1.21.12'
-
-      - name: Clone down repository
-        uses: actions/checkout@v4
-
       - name: Run application
         run:  |
             cd backend
