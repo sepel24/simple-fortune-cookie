@@ -53,5 +53,6 @@ jobs:
           context: ./backend
           push: true
           tags: sepel24/frontend:latest
+          
     
 
